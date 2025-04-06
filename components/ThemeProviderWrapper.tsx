@@ -1,15 +1,14 @@
 import '@/global.css';
 
-import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import * as React from 'react';
-import { Platform } from 'react-native';
-import { NAV_THEME } from '@/lib/constants';
-import { useColorScheme } from '@/lib/useColorScheme';
-import { PortalHost } from '@rn-primitives/portal';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { setAndroidNavigationBar } from '@/lib/android-navigation-bar';
+import { NAV_THEME } from '@/lib/constants';
+import { useColorScheme } from '@/lib/useColorScheme';
+import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
+import { PortalHost } from '@rn-primitives/portal';
+import { StatusBar } from 'expo-status-bar';
+import * as React from 'react';
+import { Platform, View } from 'react-native';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -22,10 +21,10 @@ const DARK_THEME: Theme = {
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from 'expo-router';
 
-export default function RootLayout() {
+export  function ThemeProviderWrapper({ children }: { children: React.ReactNode }) {
   const hasMounted = React.useRef(false);
   const { colorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
@@ -51,16 +50,11 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{
-            title: 'Starter Base',
-            headerRight: () => <ThemeToggle />,
-          }}
-        />
-      </Stack>
+      <View className='top-0 right-0 flex-1 size-10 position-absolute'>
+        <ThemeToggle />
+        </View>
       <PortalHost />
+      {children}
     </ThemeProvider>
   );
 }

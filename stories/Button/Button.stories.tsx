@@ -1,15 +1,20 @@
 import { View } from 'react-native';
 import type { Meta, StoryObj } from '@storybook/react';
-import { MyButton } from './Button';
+import { Button, ButtonProps } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
 
-const MyButtonMeta: Meta<typeof MyButton> = {
-  title: 'MyButton',
-  component: MyButton,
+type ButtonStoryProps = ButtonProps & {
+  text: string;
+};
+
+const ButtonMeta: Meta<ButtonStoryProps> = {
+  title: 'Button',
+  component: Button,
+  args: {
+    text: 'Button',
+  },
   argTypes: {
     onPress: { action: 'pressed the button' },
-  },
-  args: {
-    text: 'Hello world',
   },
   decorators: [
     (Story) => (
@@ -20,12 +25,12 @@ const MyButtonMeta: Meta<typeof MyButton> = {
   ],
 };
 
-export default MyButtonMeta;
+export default ButtonMeta;
 
-export const Basic: StoryObj<typeof MyButton> = {};
-
-export const AnotherExample: StoryObj<typeof MyButton> = {
-  args: {
-    text: 'Another example',
-  },
+export const Basic: StoryObj<ButtonStoryProps> = {
+  render: (args) => (
+    <Button {...args}>
+      <Text>{args.text}</Text>
+    </Button>
+  ),
 };

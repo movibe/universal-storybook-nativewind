@@ -1,6 +1,7 @@
+import path from "path";
+
 const main = {
   stories: [
-    "../stories/**/*.stories.mdx",
     "../stories/**/*.stories.?(ts|tsx|js|jsx)",
   ],
 
@@ -40,11 +41,19 @@ const main = {
     options: {},
   },
 
-  docs: {},
-
   webpackFinal: async (config: any) => {
+      config.resolve.alias = {
+      '@': path.resolve(__dirname, '..'),
+    };
+    
+    // Adiciona fallbacks para módulos do Node.js
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      "tty": false, // Usando false para ignorar o módulo tty
+    };
+    
     config.module.rules.push({
-      test: /\.(js|jsx|ts|tsx)$/,
+      test: /\.(js|jsx|ts|tsx|mjs)$/,
       loader: "babel-loader",
       options: {
         presets: [
@@ -53,6 +62,16 @@ const main = {
         ],
         plugins: ["react-native-reanimated/plugin", "@babel/plugin-transform-modules-commonjs"],
       },
+    });
+
+    // Adiciona suporte específico para arquivos .mjs
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: "javascript/auto",
+      resolve: {
+        fullySpecified: false
+      }
     });
 
     return config;
