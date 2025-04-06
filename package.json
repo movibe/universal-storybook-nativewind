@@ -12,7 +12,11 @@
     "lint": "expo lint",
     "storybook-generate": "sb-rn-get-stories --config-path .ondevice",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "release": "release-it",
+    "release:patch": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major"
   },
   "jest": {
     "preset": "jest-expo"
@@ -58,6 +62,7 @@
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/datetimepicker": "8.0.1",
     "@react-native-community/slider": "4.5.2",
+    "@release-it/conventional-changelog": "7.0.2",
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-controls": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
@@ -86,6 +91,7 @@
     "jest-expo": "~51.0.1",
     "postcss-loader": "^8.1.1",
     "react-test-renderer": "18.2.0",
+    "release-it": "16.3.0",
     "storybook": "^8.6.12",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "~5.3.3"

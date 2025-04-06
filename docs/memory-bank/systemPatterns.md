@@ -27,7 +27,9 @@ graph TD
 ├── constants/          # Constants and configurations
 ├── hooks/              # Custom React hooks
 ├── assets/             # Static assets
-└── .storybook/         # Storybook configuration
+├── .storybook/         # Storybook configuration
+├── .release-it.json    # release-it configuration
+└── CHANGELOG.md        # Version history
 ```
 
 ## Design Patterns
@@ -55,6 +57,7 @@ graph TD
 - Props documentation
 - Visual testing
 - Interactive examples
+- CHANGELOG.md for version history
 
 ### 4. Testing Pattern
 
@@ -63,6 +66,14 @@ graph TD
 - Visual regression tests
 - Cross-platform tests
 - Performance tests
+
+### 5. Versioning Pattern
+
+- Semantic versioning (MAJOR.MINOR.PATCH)
+- Conventional commits for changelog
+- release-it for automation
+- Git tags for versions
+- GitHub releases for distribution
 
 ## Technical Decisions
 
@@ -73,6 +84,7 @@ graph TD
 - NativeWind for styling
 - TypeScript for type safety
 - Expo for development
+- release-it for versioning
 
 ### 2. Development Workflow
 
@@ -81,6 +93,7 @@ graph TD
 - Build process
 - Testing environment
 - Documentation updates
+- Semantic versioning
 
 ### 3. Performance Optimization
 
@@ -123,6 +136,7 @@ graph TD
 - Usage examples
 - API documentation
 - Visual testing
+- CHANGELOG.md
 
 ## Best Practices
 
@@ -157,3 +171,4 @@ graph TD
 - Code review
 - Testing
 - Updates
+- Semantic versioning

@@ -17,6 +17,7 @@
 - ESLint
 - Jest
 - React Testing Library
+- release-it (Semantic Versioning)
 
 ## Development Environment
 
@@ -63,7 +64,11 @@
   "web": "expo start --web",
   "storybook": "storybook dev -p 6006",
   "build-storybook": "storybook build",
-  "test": "jest --watchAll"
+  "test": "jest --watchAll",
+  "release": "release-it",
+  "release:patch": "release-it patch",
+  "release:minor": "release-it minor",
+  "release:major": "release-it major"
 }
 ```
 
@@ -85,6 +90,8 @@
 - eslint
 - jest
 - typescript
+- release-it
+- @release-it/conventional-changelog
 
 ## Technical Constraints
 
@@ -115,6 +122,8 @@
 - Branch management
 - Code review process
 - Release management
+- Semantic versioning with release-it
+- Conventional commits for changelog
 
 ### Testing Strategy
 
@@ -129,6 +138,7 @@
 - API documentation
 - Usage examples
 - Component documentation
+- CHANGELOG.md for version history
 
 ## Deployment
 
@@ -141,10 +151,12 @@
 
 ### Release Process
 
-1. Version bump
-2. Changelog update
+1. Version bump (via release-it)
+2. Changelog update (via conventional-changelog)
 3. Documentation update
 4. Release notes
+5. Git tag creation
+6. GitHub release (if configured)
 
 ## Security
 
