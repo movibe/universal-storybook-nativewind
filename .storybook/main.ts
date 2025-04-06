@@ -3,6 +3,7 @@ const main = {
     "../stories/**/*.stories.mdx",
     "../stories/**/*.stories.?(ts|tsx|js|jsx)",
   ],
+
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -30,14 +31,17 @@ const main = {
         ],
       },
     },
+    "@storybook/addon-webpack5-compiler-babel",
+    "@chromatic-com/storybook"
   ],
+
   framework: {
     name: "@storybook/react-webpack5",
     options: {},
   },
-  docs: {
-    autodocs: true,
-  },
+
+  docs: {},
+
   webpackFinal: async (config: any) => {
     config.module.rules.push({
       test: /\.(js|jsx|ts|tsx)$/,
@@ -47,12 +51,16 @@ const main = {
           ["babel-preset-expo", { jsxImportSource: "nativewind" }],
           "nativewind/babel",
         ],
-        plugins: ["react-native-reanimated/plugin"],
+        plugins: ["react-native-reanimated/plugin", "@babel/plugin-transform-modules-commonjs"],
       },
     });
 
     return config;
   },
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
 };
 
 export default main;

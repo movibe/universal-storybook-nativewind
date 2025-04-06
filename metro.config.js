@@ -4,6 +4,9 @@ const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 const { withNativeWind } = require('nativewind/metro');
 
+// Define __dirname for ES modules
+const __dirname = path.resolve();
+
 const { generate } = require('@storybook/react-native/scripts/generate');
 
 generate({
